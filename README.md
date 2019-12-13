@@ -32,9 +32,12 @@ Consumer mode
 -------------
 
 ```sh
-gst-launch-1.0 mediasoupbin_py name=ms \
-    ms. ! "video/x-raw,producer-id=test_video" ! autovideosink sync=false \
-    ms. ! "audio/x-raw,producer-id=test_audio" ! autoaudiosink sync=false
+# get the producers list from the server
+curl -k "https://localhost:4443/rooms/test/broadcasters" | jq
+
+gst-launch-1.0 mediasoupbin_py name=ms server-url="https://localhost:4443/rooms/test" \
+    ms. ! "video/x-raw,producer-id=<video producer id>" ! autovideosink sync=false \
+    ms. ! "audio/x-raw,producer-id=<audio producer id>" ! autoaudiosink sync=false
 ```
 
 Docker usage
