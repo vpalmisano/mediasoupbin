@@ -94,5 +94,12 @@ class DefaultSignaling:
 
     def do_consumerResume(self, data, cb):
         logger.info('do_consumerResume %s', data)
-        
-        cb(None, {})
+        r = requests.post(self.serverUrl + '/rooms/' + self.roomId + '/broadcasters/' + self.broadcasterId 
+                + '/transports/' + data['transportId'] + '/resume', 
+                json=data, verify=False)
+        try:
+            r.raise_for_status()
+        except Exception as e:
+            cb(str(e))
+        else:
+            cb(None, {})

@@ -1,6 +1,8 @@
 mediasoupbin
 ============
 
+GStreamer plugin for mediasoup-demo (https://github.com/versatica/mediasoup-demo/). 
+
 Install deps
 ------------
 
