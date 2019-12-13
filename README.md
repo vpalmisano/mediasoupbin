@@ -22,12 +22,8 @@ export GST_PLUGIN_PATH=$GST_PLUGIN_PATH:$PWD/gst/plugins
 export PYTHON_DEBUG=5
 export GST_DEBUG=2,python:5
 
-export SERVER_URL="https://localhost:4443"
-export ROOM_ID="test"
-export BROADCASTER_ID="gst0"
-
 gst-launch-1.0 \
-    mediasoupbin_py name=ms \
+    mediasoupbin_py name=ms server-url="https://localhost:4443/rooms/test" \
     videotestsrc is-live=true ! "video/x-raw,width=1280,height=720,framerate=25/1" ! ms. \
     audiotestsrc is-live=true wave=ticks ! "audio/x-raw" ! ms.
 ```

@@ -68,6 +68,8 @@ class MediaSoupBin(Gst.Bin):
 
     signaling = GObject.Property(type=object, blurb='Signaling object')
 
+    server_url = GObject.Property(type=str, blurb='Server URL', default='https://localhost:4443/rooms/test')
+
     app_data = GObject.Property(type=str, blurb='appData in JSON format', default='{}')
 
     # producer
@@ -112,7 +114,7 @@ class MediaSoupBin(Gst.Bin):
         # create a default signaling
         if not self.signaling:
             try:
-                self.signaling = DefaultSignaling()
+                self.signaling = DefaultSignaling(self.server_url)
             except Exception as e:
                 Gst.error('DefaultSignaling error: %s' %e)
                 sys.exit(-1)
