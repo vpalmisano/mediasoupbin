@@ -173,6 +173,10 @@ class MediaSoupBin(Gst.Bin):
             def on_pad_linked(pad, peer):
                 caps = pad.peer_query_caps()
                 structure = caps.get_structure(0)
+                producerId = structure.get_string('producer-id')
+                if not producerId:
+                    Gst.error('producerId not found')
+                    return
                 Gst.info('%s on_pad_linked %s' %(pad.name, caps))
                 # create listen rtp/rtcp sockets
                 recv_rtp_socket = Gio.Socket.new(Gio.SocketFamily.IPV4, 
@@ -186,7 +190,7 @@ class MediaSoupBin(Gst.Bin):
                 recv_rtcp_socket.bind(rtcp_socket_address, False)
                 #
                 config = {
-                    'producerId': structure.get_string('producer-id'),
+                    'producerId': producerId,
                     'local_ip': self.local_ip,
                     'local_rtpPort': recv_rtp_socket.get_local_address().get_port(),
                     'local_rtcpPort': recv_rtcp_socket.get_local_address().get_port(),

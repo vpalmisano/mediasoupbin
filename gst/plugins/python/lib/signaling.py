@@ -78,7 +78,7 @@ class DefaultSignaling:
         except Exception as e:
             cb(str(e))
         else:
-            cb(None, r.json())
+            cb(None, {})
 
     def do_transportConsume(self, data, cb):
         logger.info('do_transportConsume %s', data)
@@ -94,4 +94,5 @@ class DefaultSignaling:
 
     def do_consumerResume(self, data, cb):
         logger.info('do_consumerResume %s', data)
-
+        
+        cb(None, {})
