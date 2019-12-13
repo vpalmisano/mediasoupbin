@@ -1,7 +1,7 @@
 mediasoupbin
 ============
 
-GStreamer plugin for mediasoup-demo (https://github.com/versatica/mediasoup-demo/). 
+GStreamer plugin for mediasoup-demo (https://github.com/vpalmisano/mediasoup-demo/). 
 
 Install deps
 ------------
