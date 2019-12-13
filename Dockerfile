@@ -13,4 +13,4 @@ RUN apt-get clean \
 
 WORKDIR /
 COPY gst/plugins/python /usr/lib/x86_64-linux-gnu/gstreamer-1.0/python/
-CMD [ "gst-inspect-1.0", "mediasoupbin_py" ]
+ENTRYPOINT [ "gst-launch-1.0" ]

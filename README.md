@@ -12,6 +12,16 @@ sudo apt install python3 python3-requests python3-gst-1.0 \
     gir1.2-gstreamer-1.0 gir1.2-gst-plugins-base-1.0 gir1.2-gst-plugins-bad-1.0
 ```
 
+Docker
+------
+
+```sh
+docker build -t mediasoupbin .
+
+docker run --rm -it --net=host mediasoupbin \
+    videotestsrc is-live=true ! "video/x-raw,width=1280,height=720,framerate=25/1" ! mediasoupbin_py
+```
+
 Producer mode
 -------------
 
